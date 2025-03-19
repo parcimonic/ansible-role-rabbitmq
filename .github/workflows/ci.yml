@@ -1,6 +1,7 @@
 ---
 name: CI
-'on':
+"on":
+  workflow_dispatch:
   pull_request:
   push:
     branches:
@@ -10,10 +11,9 @@ name: CI
 
 defaults:
   run:
-    working-directory: 'geerlingguy.rabbitmq'
+    working-directory: "geerlingguy.rabbitmq"
 
 jobs:
-
   lint:
     name: Lint
     runs-on: ubuntu-latest
@@ -21,12 +21,12 @@ jobs:
       - name: Check out the codebase.
         uses: actions/checkout@v4
         with:
-          path: 'geerlingguy.rabbitmq'
+          path: "geerlingguy.rabbitmq"
 
       - name: Set up Python 3.
         uses: actions/setup-python@v5
         with:
-          python-version: '3.x'
+          python-version: "3.x"
 
       - name: Install test dependencies.
         run: pip3 install yamllint
@@ -50,12 +50,12 @@ jobs:
       - name: Check out the codebase.
         uses: actions/checkout@v4
         with:
-          path: 'geerlingguy.rabbitmq'
+          path: "geerlingguy.rabbitmq"
 
       - name: Set up Python 3.
         uses: actions/setup-python@v5
         with:
-          python-version: '3.x'
+          python-version: "3.x"
 
       - name: Install test dependencies.
         run: pip3 install ansible molecule molecule-plugins[docker] docker
@@ -63,6 +63,6 @@ jobs:
       - name: Run Molecule tests.
         run: molecule test
         env:
-          PY_COLORS: '1'
-          ANSIBLE_FORCE_COLOR: '1'
+          PY_COLORS: "1"
+          ANSIBLE_FORCE_COLOR: "1"
           MOLECULE_DISTRO: ${{ matrix.distro }}
