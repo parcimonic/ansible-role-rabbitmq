@@ -39,6 +39,8 @@ jobs:
     name: Molecule
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
+      max-parallel: 3
       matrix:
         distro:
           # See: https://github.com/geerlingguy/ansible-role-rabbitmq/issues/21
