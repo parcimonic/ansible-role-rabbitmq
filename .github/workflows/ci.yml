@@ -44,7 +44,16 @@ jobs:
           # See: https://github.com/geerlingguy/ansible-role-rabbitmq/issues/21
           # - rockylinux9
           - ubuntu2204
+          - ubuntu2404
           - debian12
+        rabbitmq:
+          - 3.11.0
+          - 3.11.28
+          - 3.12.0
+          - 3.12.9
+          - 3.12.12
+          - 3.13.3
+          - 4.0.7
 
     steps:
       - name: Check out the codebase.
@@ -61,7 +70,7 @@ jobs:
         run: pip3 install ansible molecule molecule-plugins[docker] docker
 
       - name: Run Molecule tests.
-        run: molecule test
+        run: molecule test -- --extra-vars "rabbitmq_version=${{ matrix.rabbitmq }}"
         env:
           PY_COLORS: "1"
           ANSIBLE_FORCE_COLOR: "1"
