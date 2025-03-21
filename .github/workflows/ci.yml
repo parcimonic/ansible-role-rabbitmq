@@ -40,7 +40,7 @@ jobs:
     runs-on: self-hosted
     strategy:
       fail-fast: false
-      max-parallel: 3
+      max-parallel: 4
       matrix:
         distro:
           # See: https://github.com/geerlingguy/ansible-role-rabbitmq/issues/21
@@ -49,13 +49,18 @@ jobs:
           - ubuntu2404
           - debian12
         rabbitmq:
-          - 3.11.0
-          - 3.11.28
-          - 3.12.0
-          - 3.12.9
-          - 3.12.12
-          - 3.13.3
+          - 3.12.14
+          - 3.13.7
           - 4.0.7
+        include:
+          - distro: debian12
+            rabbitmq: 3.12.2-1
+          - distro: ubuntu2204
+            rabbitmq: 3.12.2-1
+          - distro: debian12
+            rabbitmq: 3.11.20-1
+          - distro: ubuntu2204
+            rabbitmq: 3.11.20-1
 
     steps:
       - name: Check out the codebase.
