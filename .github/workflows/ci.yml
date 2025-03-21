@@ -2,12 +2,6 @@
 name: CI
 "on":
   workflow_dispatch:
-  pull_request:
-  push:
-    branches:
-      - master
-  schedule:
-    - cron: "0 2 * * 5"
 
 defaults:
   run:
@@ -16,7 +10,7 @@ defaults:
 jobs:
   lint:
     name: Lint
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Check out the codebase.
         uses: actions/checkout@v4
@@ -37,12 +31,11 @@ jobs:
 
   molecule:
     name: Molecule
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     strategy:
       matrix:
         distro:
-          # See: https://github.com/geerlingguy/ansible-role-rabbitmq/issues/21
-          # - rockylinux9
+          - rockylinux9
           - ubuntu2204
           - debian12
 
