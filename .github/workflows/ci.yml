@@ -54,13 +54,13 @@ jobs:
           - 4.0.7
         include:
           - distro: debian12
-            rabbitmq: 3.12.2-1
+            rabbitmq: 3.12.2
           - distro: ubuntu2204
-            rabbitmq: 3.12.2-1
+            rabbitmq: 3.12.2
           - distro: debian12
-            rabbitmq: 3.11.20-1
+            rabbitmq: 3.11.20
           - distro: ubuntu2204
-            rabbitmq: 3.11.20-1
+            rabbitmq: 3.11.20
 
     steps:
       - name: Check out the codebase.
